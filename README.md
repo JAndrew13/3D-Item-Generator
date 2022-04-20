@@ -2,6 +2,9 @@
 ## Summary
 This application is meant to be used as logistical support tool when creating a large collection of varied 3D objects. It was intially created for a digital art project I was working on, but was also written as a multi-tool for other projects in the future.  
 
+# For final results of the project, please take a look at https://www.polypot.org/
+*This website was hosted on Squarespace, but all other frontend elements (graphics, interactive 3D, blog posts, etc.) were created by me.
+
 
 ## How it works
 
