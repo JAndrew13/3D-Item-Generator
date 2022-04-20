@@ -1,0 +1,88 @@
+MySelection = #(ITEM_CODES)
+
+select MySelection
+
+for obj in MySelection do
+(
+thecopy = copy obj
+thecopy.name = "copy_" + obj.name
+thecopy.pos = [0,0,0]
+)
+
+clearSelection
+NewSelection = $copy_*
+select NewSelection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+selection.name = "COMBO"
+
+dir="FILEPATH"	-- the target directory
+
+Output_Path = "C:\\Users\\Leaf\\Desktop\\ItemGenerator_1.1\\objects\\" + combonum + ".glb" -- Destination folder.
+
+Assembly = dotNetClass "System.Reflection.Assembly"
+-- UPDATE YOUR PATH TO BABYLON DLL
+Assembly.loadfrom "C:\Program Files\Autodesk\3ds Max 2021\bin\assemblies\Max2Babylon.dll"
+maxScriptManager = dotNetObject "Max2Babylon.MaxScriptManager"
+
+-- OUTPUT PATH
+param = maxScriptManager.InitParameters Output_Path
+
+-- PARAMETERS
+param.enableKHRTextureTransform = true
+param.writeTextures = true
+param.overwriteTextures = true
+param.exportAnimations = false
+param.exportOnlySelected = true
+param.exportMaterials = true
+param.autoSaveSceneFile = false
+param.outputFormat = "glb"
+param.txtQuality = 100
+maxScriptManager.Export param --true -- <-- Uncomment to enable logging
+
+-- ANIMATE TURNAROUND
+with animate on
+(
+   at time 0
+   $.rotation = (eulerangles 0.0 0.0 -45 as quat)
+	at time 100
+   $.rotation = (eulerangles 0.0 0.0 45 as quat)
+)
+
+
+Output_Path = "C:\\Users\\Leaf\\Desktop\\ItemGenerator_1.1\\objects\\" + combonum + "_turnaround.glb" -- Destination folder.
+
+Assembly = dotNetClass "System.Reflection.Assembly"
+-- UPDATE YOUR PATH TO BABYLON DLL
+Assembly.loadfrom "C:\Program Files\Autodesk\3ds Max 2021\bin\assemblies\Max2Babylon.dll"
+maxScriptManager = dotNetObject "Max2Babylon.MaxScriptManager"
+
+-- OUTPUT PATH
+param = maxScriptManager.InitParameters Output_Path
+
+-- PARAMETERS
+param.enableKHRTextureTransform = true
+param.writeTextures = true
+param.overwriteTextures = true
+param.exportAnimations = true
+param.exportOnlySelected = true
+param.exportMaterials = true
+param.autoSaveSceneFile = false
+param.outputFormat = "glb"
+param.txtQuality = 100
+maxScriptManager.Export param --true -- <-- Uncomment to enable logging
+
+-- DELETE SELECTION
+delete selection
