@@ -38,8 +38,8 @@ current_data = {}
 
 # ------------------------------ MENU 1 (Create, Save, Load) -------------------------------- #
 
-def menu_1():
-    global current_filename, current_data
+def menu_1():  # TODO: `menu_1` is not a super descriptive name
+    global current_filename, current_data  # TODO: Consider returning values from this function instead of editing global values
     print("\n Welcome to JB's Item Generator!\n")
     print("What would you like to do?")
     print("1. Create a new catalog.")
@@ -80,7 +80,7 @@ def save_file(data, filename):
     data = json.dumps(data)
     with open(f'data/{filename}.json', 'w') as file:
         file.write(data)
-    print('File Saved!')
+    print('File Saved!')  # TODO: Consider using the logging package instead of print statements
 
 
 def load_catalog(filename):
@@ -102,7 +102,11 @@ def menu_2():
     print('3. Continue to Generator')
     print('4. EXIT')
 
-    path = int(input('\n Please select a number. \n --->'))
+    # TODO: Consider using the argpase library for a CLI-like tool instead of `input`
+    # See: https://docs.python.org/3/library/argparse.html
+    # Typer is another good Python package that may help
+    # See: https://typer.tiangolo.com/
+    path = int(input('\n Please select a number. \n --->')) 
 
     # -------------------------OPTION 1 : SELECT SINGLE ITEM --------------------#
     if path == 1:
@@ -146,7 +150,7 @@ def auto_rarity():
         items = []
         # build items data in category
         for item in current_data[category]:
-            item_stats = []
+            item_stats = []  #  TODO: Instead of using a list for item stats, how about a class?
 
             # determine item's data
             if type(item) == int:
